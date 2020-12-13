@@ -1,10 +1,17 @@
 const { karma } = require('../paths.js');
 
+const { BROWSER_TO_TEST } = process.env;
+
 module.exports = function(config) {
-    config.set({
+    const options = {
         frameworks: ['mocha'],
         files: [karma.testFile],
-        client: { mocha: { reporter: 'html' } },
-        browsers:[process.env.KARMA_BROWSER]
-    });
+        client: { mocha: { reporter: 'html' } }
+    };
+
+    if (BROWSER_TO_TEST) {
+        options.browsers = [BROWSER_TO_TEST];
+    }
+
+    config.set(options);
 };

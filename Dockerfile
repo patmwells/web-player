@@ -9,24 +9,22 @@ RUN npm run lint
 RUN npm run test:unit
 RUN npm run prod:build
 
-FROM selenium/standalone-chrome:87.0 as chrome
-USER root
+FROM selenium/standalone-chrome:87.0 as chrome-87-tests
+ENV BROWSER_TO_TEST='ChromeHeadless'
 COPY --from=builder /usr/bin/web-player/app .
+USER root
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
-    apt-get install -y nodejs && \
-    node -v && \
-    npm -v
-ENV KARMA_BROWSER='ChromeHeadless'
+    apt-get install -y nodejs
 RUN npm run test:browser:run
 
-FROM builder as staged
-COPY --from=chrome /dist/test ./dist/test
+FROM builder as packaged
+COPY --from=chrome-87-tests /dist/test ./dist/test/chrome-87
 RUN npm prune --production
 
-FROM base as prod
-COPY --from=staged /usr/bin/web-player/app/dist/client ./dist/client
-COPY --from=staged /usr/bin/web-player/app/dist/server ./dist/server
-COPY --from=staged /usr/bin/web-player/app/package.json ./package.json
-COPY --from=staged /usr/bin/web-player/app/node_modules ./node_modules
+FROM base as production
+COPY --from=packaged /usr/bin/web-player/app/dist/client ./dist/client
+COPY --from=packaged /usr/bin/web-player/app/dist/server ./dist/server
+COPY --from=packaged /usr/bin/web-player/app/package.json ./package.json
+COPY --from=packaged /usr/bin/web-player/app/node_modules ./node_modules
 USER node
 CMD ["npm", "run", "prod:start"]

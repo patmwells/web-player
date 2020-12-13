@@ -5,6 +5,6 @@ services:
       - APP_PORT
     build:
       context: .
-      target: prod
+      target: production
     ports:
       - $APP_PORT:$APP_PORT
