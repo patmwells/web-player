@@ -15,7 +15,9 @@ tests:
 debug:
 	docker-compose run --service-ports --rm app /bin/sh
 prod:
-	docker-compose -f docker-compose.yml up --build --force-recreate
+	docker-compose -f docker-compose.yml up --build --force-recreate app
+build:
+	docker-compose -f docker-compose.yml build --force-rm --no-cache app
 clean:
 	docker-compose down --remove-orphans --rmi all
 	docker-compose -f docker-compose.yml down --remove-orphans --rmi all

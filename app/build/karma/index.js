@@ -4,6 +4,7 @@ module.exports = function(config) {
     config.set({
         frameworks: ['mocha'],
         files: [karma.testFile],
-        client: { mocha: { reporter: 'html' } }
+        client: { mocha: { reporter: 'html' } },
+        browsers:[process.env.KARMA_BROWSER]
     });
 };

@@ -14,7 +14,7 @@ const dev = {
 };
 
 const prod = {
-    mode: 'production',
+    mode: 'development',
     target: 'web',
     devtool: 'source-map',
     entry: test.entry,
