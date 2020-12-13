@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  app:
+    environment:
+      - APP_PORT
+    build:
+      context: .
+      target: prod
+    ports:
+      - $APP_PORT:$APP_PORT
