@@ -6,7 +6,7 @@ const dev = {
     devtool: 'inline-source-map',
     plugins:[
         new LiveReloadPlugin({
-            port: 35728,
+            port: process.env.TESTS_LR_PORT,
             hostname: 'localhost',
             appendScriptTag: true
         })

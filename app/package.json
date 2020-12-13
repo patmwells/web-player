@@ -6,13 +6,17 @@
   "license": "ISC",
   "main": "src/server/index.js",
   "scripts": {
-    "lint": "node build/run lint",
-    "test:unit": "node build/run test:unit",
-    "test:unit:watch": "node build/run test:unit:watch",
-    "test:browser": "node build/run test:browser",
-    "test:browser:watch": "node build/run test:browser:watch",
-    "start:dev": "node build/run start:dev",
-    "build:prod": "node build/run build:prod"
+    "lint": "eslint --ext .js,jsx .",
+    "test:unit": "jest src",
+    "test:unit:watch": "npm run test:unit -- --watch",
+    "test:browser": "karma start build/karma/index.js",
+    "test:browser:run": "npm run test:browser -- --single-run",
+    "test:browser:watch": "npm run test:browser",
+    "dev:build": "webpack --config build/webpack/index.js --env dev",
+    "dev:watch": "npm run dev:build -- --watch",
+    "dev:start": "nodemon --watch dist/server dist/server/index.js",
+    "prod:build": "webpack --config build/webpack/index.js --env prod",
+    "prod:start": "node dist/server/index.js"
   },
   "dependencies": {
     "express": "4.17.1",

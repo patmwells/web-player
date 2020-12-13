@@ -8,13 +8,7 @@ const roots = {
 };
 
 module.exports = {
-    ...roots,
-    karma: {
-        config: path.resolve(roots.build, 'karma', 'index.js'),
-        testFile: path.resolve(roots.dist, 'test', 'browser.test.bundle.js')
-    },
     webpack: {
-        config: path.resolve(roots.build, 'webpack', 'index.js'),
         client: {
             entry: path.resolve(roots.src, 'client', 'index.jsx'),
             output: {
@@ -36,5 +30,8 @@ module.exports = {
                 filename: 'browser.test.bundle.js'
             }
         }
+    },
+    karma: {
+        testFile: path.resolve(roots.dist, 'test', 'browser.test.bundle.js')
     }
 };
