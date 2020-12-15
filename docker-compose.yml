@@ -8,3 +8,13 @@ services:
       target: production
     ports:
       - $APP_PORT:$APP_PORT
+  browser-tests:
+    environment:
+      - KARMA_PORT
+      - BROWSERSTACK_USERNAME
+      - BROWSERSTACK_ACCESS_KEY
+    build:
+      context: .
+      target: browser-tests
+    ports:
+      - $KARMA_PORT:$KARMA_PORT

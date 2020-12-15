@@ -17,6 +17,7 @@ const prod = {
     mode: 'development',
     target: 'web',
     devtool: 'source-map',
+    name: 'browser-tests',
     entry: test.entry,
     output: {
         publicPath: '/',

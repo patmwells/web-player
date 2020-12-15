@@ -16,7 +16,9 @@ const dev = {
 
 const prod = {
     mode: 'production',
+    target: 'web',
     devtool: 'source-map',
+    name: 'client',
     entry: client.entry,
     output: {
         publicPath: '/',

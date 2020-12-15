@@ -5,19 +5,6 @@
   "author": "",
   "license": "ISC",
   "main": "src/server/index.js",
-  "scripts": {
-    "lint": "eslint --ext .js,jsx .",
-    "test:unit": "jest src",
-    "test:unit:watch": "npm run test:unit -- --watch",
-    "test:browser": "karma start build/karma/index.js",
-    "test:browser:run": "npm run test:browser -- --single-run",
-    "test:browser:watch": "npm run test:browser",
-    "dev:build": "webpack --config build/webpack/index.js --env dev",
-    "dev:watch": "npm run dev:build -- --watch",
-    "dev:start": "nodemon --watch dist/server dist/server/index.js",
-    "prod:build": "webpack --config build/webpack/index.js --env prod",
-    "prod:start": "node dist/server/index.js"
-  },
   "dependencies": {
     "express": "4.17.1",
     "react": "17.0.1",
@@ -30,13 +17,14 @@
     "@testing-library/react": "11.2.2",
     "babel-loader": "8.2.1",
     "babel-plugin-module-resolver": "4.0.0",
+    "browserslist": "4.16.0",
     "css-loader": "5.0.1",
     "eslint": "7.14.0",
     "eslint-plugin-react": "7.21.5",
     "html-webpack-plugin": "4.5.0",
     "jest": "26.6.3",
     "karma": "5.2.3",
-    "karma-chrome-launcher": "3.1.0",
+    "karma-browserstack-launcher": "1.6.0",
     "karma-mocha": "2.0.1",
     "mocha": "8.2.1",
     "nodemon": "2.0.6",
@@ -46,5 +34,23 @@
     "webpack-livereload-plugin": "2.3.0",
     "webpack-merge": "5.4.0",
     "webpack-node-externals": "2.5.2"
-  }
+  },
+  "scripts": {
+    "browser:support": "browserslist",
+    "browser:support:update": "npm run browser:support -- --update-db",
+    "lint": "eslint --ext .js,jsx .",
+    "test:unit": "jest src",
+    "test:unit:watch": "npm run test:unit -- --watch",
+    "test:browser": "karma start build/karma/index.js",
+    "test:browser:run": "npm run test:browser -- --single-run",
+    "test:browser:watch": "npm run test:browser",
+    "dev:build": "webpack --config build/webpack/index.js --env dev",
+    "dev:watch": "npm run dev:build -- --watch",
+    "dev:start": "nodemon --watch dist/server dist/server/index.js",
+    "prod:build": "webpack --config build/webpack/index.js --env prod",
+    "prod:start": "node dist/server/index.js"
+  },
+  "browserslist": [
+    ">1.5%"
+  ]
 }

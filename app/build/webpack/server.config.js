@@ -8,6 +8,7 @@ const dev = {
 const prod = {
     mode: 'production',
     target: 'node',
+    name: 'server',
     externals: [nodeExternals()],
     entry: server.entry,
     output: {
